@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		52F4360A1A623C9A00354BA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F436091A623C9A00354BA4 /* main.m */; };
-		52F4360D1A623C9A00354BA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F4360C1A623C9A00354BA4 /* AppDelegate.m */; };
 		52F436101A623C9A00354BA4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F4360F1A623C9A00354BA4 /* ViewController.m */; };
 		52F436131A623C9A00354BA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F436111A623C9A00354BA4 /* Main.storyboard */; };
 		52F436151A623C9A00354BA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F436141A623C9A00354BA4 /* Images.xcassets */; };
 		52F436181A623C9A00354BA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F436161A623C9A00354BA4 /* LaunchScreen.xib */; };
 		52F436241A623C9B00354BA4 /* LogicGatesReducerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F436231A623C9B00354BA4 /* LogicGatesReducerTests.m */; };
+		52F436351A623DC000354BA4 /* Quine_McCluskey.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F436341A623DC000354BA4 /* Quine_McCluskey.m */; };
+		52F436391A623E2000354BA4 /* TruthTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F436381A623E2000354BA4 /* TruthTableModel.m */; };
+		52F4363C1A6241BB00354BA4 /* LogicGatesReducerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F4363B1A6241BB00354BA4 /* LogicGatesReducerAppDelegate.m */; };
+		52F436411A62420800354BA4 /* LogicGatesSolverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F4363E1A62420800354BA4 /* LogicGatesSolverViewController.m */; };
+		52F436421A62420800354BA4 /* GatesDiagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F436401A62420800354BA4 /* GatesDiagramViewController.m */; };
+		52F436461A6242E200354BA4 /* GatesDiagramView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F436451A6242E200354BA4 /* GatesDiagramView.m */; };
+		52F436491A62430B00354BA4 /* DebugConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F436481A62430B00354BA4 /* DebugConsoleViewController.m */; };
+		52F4364E1A62434F00354BA4 /* DebugConsoleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F4364A1A62434F00354BA4 /* DebugConsoleViewController.xib */; };
+		52F4364F1A62434F00354BA4 /* GatesDiagramViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F4364B1A62434F00354BA4 /* GatesDiagramViewController.xib */; };
+		52F436501A62434F00354BA4 /* LogicGatesSolverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F4364C1A62434F00354BA4 /* LogicGatesSolverViewController.xib */; };
+		52F436511A62434F00354BA4 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F4364D1A62434F00354BA4 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +40,6 @@
 		52F436041A623C9A00354BA4 /* LogicGatesReducer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogicGatesReducer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F436081A623C9A00354BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52F436091A623C9A00354BA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		52F4360B1A623C9A00354BA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		52F4360C1A623C9A00354BA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		52F4360E1A623C9A00354BA4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		52F4360F1A623C9A00354BA4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		52F436121A623C9A00354BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,6 +48,24 @@
 		52F4361D1A623C9B00354BA4 /* LogicGatesReducerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicGatesReducerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F436221A623C9B00354BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52F436231A623C9B00354BA4 /* LogicGatesReducerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogicGatesReducerTests.m; sourceTree = "<group>"; };
+		52F436331A623DC000354BA4 /* Quine_McCluskey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quine_McCluskey.h; sourceTree = "<group>"; };
+		52F436341A623DC000354BA4 /* Quine_McCluskey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quine_McCluskey.m; sourceTree = "<group>"; };
+		52F436371A623E2000354BA4 /* TruthTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TruthTableModel.h; sourceTree = "<group>"; };
+		52F436381A623E2000354BA4 /* TruthTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TruthTableModel.m; sourceTree = "<group>"; };
+		52F4363A1A6241BB00354BA4 /* LogicGatesReducerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogicGatesReducerAppDelegate.h; sourceTree = "<group>"; };
+		52F4363B1A6241BB00354BA4 /* LogicGatesReducerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogicGatesReducerAppDelegate.m; sourceTree = "<group>"; };
+		52F4363D1A62420800354BA4 /* LogicGatesSolverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogicGatesSolverViewController.h; sourceTree = "<group>"; };
+		52F4363E1A62420800354BA4 /* LogicGatesSolverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogicGatesSolverViewController.m; sourceTree = "<group>"; };
+		52F4363F1A62420800354BA4 /* GatesDiagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatesDiagramViewController.h; sourceTree = "<group>"; };
+		52F436401A62420800354BA4 /* GatesDiagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatesDiagramViewController.m; sourceTree = "<group>"; };
+		52F436441A6242E200354BA4 /* GatesDiagramView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatesDiagramView.h; sourceTree = "<group>"; };
+		52F436451A6242E200354BA4 /* GatesDiagramView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatesDiagramView.m; sourceTree = "<group>"; };
+		52F436471A62430B00354BA4 /* DebugConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugConsoleViewController.h; sourceTree = "<group>"; };
+		52F436481A62430B00354BA4 /* DebugConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugConsoleViewController.m; sourceTree = "<group>"; };
+		52F4364A1A62434F00354BA4 /* DebugConsoleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugConsoleViewController.xib; sourceTree = "<group>"; };
+		52F4364B1A62434F00354BA4 /* GatesDiagramViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GatesDiagramViewController.xib; sourceTree = "<group>"; };
+		52F4364C1A62434F00354BA4 /* LogicGatesSolverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogicGatesSolverViewController.xib; sourceTree = "<group>"; };
+		52F4364D1A62434F00354BA4 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +107,14 @@
 		52F436061A623C9A00354BA4 /* LogicGatesReducer */ = {
 			isa = PBXGroup;
 			children = (
-				52F4360B1A623C9A00354BA4 /* AppDelegate.h */,
-				52F4360C1A623C9A00354BA4 /* AppDelegate.m */,
-				52F4360E1A623C9A00354BA4 /* ViewController.h */,
-				52F4360F1A623C9A00354BA4 /* ViewController.m */,
-				52F436111A623C9A00354BA4 /* Main.storyboard */,
-				52F436141A623C9A00354BA4 /* Images.xcassets */,
-				52F436161A623C9A00354BA4 /* LaunchScreen.xib */,
+				52F436431A6242CE00354BA4 /* view */,
+				52F436361A623E0D00354BA4 /* TruthTable */,
+				52F436321A623D4D00354BA4 /* Quine_McCluskey */,
+				52F4362D1A623CCF00354BA4 /* Delegate */,
+				52F4362E1A623CE000354BA4 /* ViewController */,
+				52F4362F1A623CF200354BA4 /* Storyboard */,
+				52F436301A623D0800354BA4 /* Asset */,
+				52F436311A623D1800354BA4 /* Xib */,
 				52F436071A623C9A00354BA4 /* Supporting Files */,
 			);
 			path = LogicGatesReducer;
@@ -117,6 +144,85 @@
 				52F436221A623C9B00354BA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52F4362D1A623CCF00354BA4 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				52F4363A1A6241BB00354BA4 /* LogicGatesReducerAppDelegate.h */,
+				52F4363B1A6241BB00354BA4 /* LogicGatesReducerAppDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		52F4362E1A623CE000354BA4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				52F436471A62430B00354BA4 /* DebugConsoleViewController.h */,
+				52F436481A62430B00354BA4 /* DebugConsoleViewController.m */,
+				52F4360E1A623C9A00354BA4 /* ViewController.h */,
+				52F4363D1A62420800354BA4 /* LogicGatesSolverViewController.h */,
+				52F4363E1A62420800354BA4 /* LogicGatesSolverViewController.m */,
+				52F4363F1A62420800354BA4 /* GatesDiagramViewController.h */,
+				52F436401A62420800354BA4 /* GatesDiagramViewController.m */,
+				52F4360F1A623C9A00354BA4 /* ViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		52F4362F1A623CF200354BA4 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				52F436111A623C9A00354BA4 /* Main.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		52F436301A623D0800354BA4 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				52F436141A623C9A00354BA4 /* Images.xcassets */,
+			);
+			name = Asset;
+			sourceTree = "<group>";
+		};
+		52F436311A623D1800354BA4 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				52F4364A1A62434F00354BA4 /* DebugConsoleViewController.xib */,
+				52F4364B1A62434F00354BA4 /* GatesDiagramViewController.xib */,
+				52F4364C1A62434F00354BA4 /* LogicGatesSolverViewController.xib */,
+				52F4364D1A62434F00354BA4 /* MainWindow.xib */,
+				52F436161A623C9A00354BA4 /* LaunchScreen.xib */,
+			);
+			name = Xib;
+			sourceTree = "<group>";
+		};
+		52F436321A623D4D00354BA4 /* Quine_McCluskey */ = {
+			isa = PBXGroup;
+			children = (
+				52F436331A623DC000354BA4 /* Quine_McCluskey.h */,
+				52F436341A623DC000354BA4 /* Quine_McCluskey.m */,
+			);
+			name = Quine_McCluskey;
+			sourceTree = "<group>";
+		};
+		52F436361A623E0D00354BA4 /* TruthTable */ = {
+			isa = PBXGroup;
+			children = (
+				52F436371A623E2000354BA4 /* TruthTableModel.h */,
+				52F436381A623E2000354BA4 /* TruthTableModel.m */,
+			);
+			name = TruthTable;
+			sourceTree = "<group>";
+		};
+		52F436431A6242CE00354BA4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				52F436441A6242E200354BA4 /* GatesDiagramView.h */,
+				52F436451A6242E200354BA4 /* GatesDiagramView.m */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +305,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F436511A62434F00354BA4 /* MainWindow.xib in Resources */,
+				52F4364F1A62434F00354BA4 /* GatesDiagramViewController.xib in Resources */,
+				52F4364E1A62434F00354BA4 /* DebugConsoleViewController.xib in Resources */,
 				52F436131A623C9A00354BA4 /* Main.storyboard in Resources */,
 				52F436181A623C9A00354BA4 /* LaunchScreen.xib in Resources */,
 				52F436151A623C9A00354BA4 /* Images.xcassets in Resources */,
+				52F436501A62434F00354BA4 /* LogicGatesSolverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +329,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F436491A62430B00354BA4 /* DebugConsoleViewController.m in Sources */,
 				52F436101A623C9A00354BA4 /* ViewController.m in Sources */,
-				52F4360D1A623C9A00354BA4 /* AppDelegate.m in Sources */,
+				52F4363C1A6241BB00354BA4 /* LogicGatesReducerAppDelegate.m in Sources */,
+				52F436351A623DC000354BA4 /* Quine_McCluskey.m in Sources */,
+				52F436411A62420800354BA4 /* LogicGatesSolverViewController.m in Sources */,
 				52F4360A1A623C9A00354BA4 /* main.m in Sources */,
+				52F436461A6242E200354BA4 /* GatesDiagramView.m in Sources */,
+				52F436391A623E2000354BA4 /* TruthTableModel.m in Sources */,
+				52F436421A62420800354BA4 /* GatesDiagramViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
