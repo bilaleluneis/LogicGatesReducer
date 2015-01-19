@@ -3,15 +3,13 @@
 //  LogicGatesSolver
 //
 //  Created by Bilal El Uneis on 3/23/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  updated 1/18/2015 to use modern style
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 
-@interface GatesDiagramView : UIView{
-
-}
+@interface GatesDiagramView : UIView
 
 -(void)drawAndGate:(CGContextRef)con :(int)x :(int)y;
 -(void)createAndGateConnection:(CGContextRef)con :(int)x :(int)y;

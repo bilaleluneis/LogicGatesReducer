@@ -3,7 +3,7 @@
 //  LogicGatesSolver
 //
 //  Created by Bilal El Uneis on 3/23/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  updated 1/18/2015 to use modern style
 //
 
 #import "GatesDiagramView.h"
@@ -68,8 +68,8 @@
 	TruthTableModel *truthTableModel;
 	LogicGatesReducerAppDelegate *del = (LogicGatesReducerAppDelegate*) [[UIApplication sharedApplication] delegate];
 	NSMutableArray *truthTableArry = [del getTruthTable];
-	int and_gate_num=[truthTableArry count];
-	int middle_point = and_gate_num / 2;
+	NSUInteger and_gate_num=[truthTableArry count];
+	NSUInteger middle_point = and_gate_num / 2;
 	int x = 50;
 	int y = 50;
 	CGContextRef context = UIGraphicsGetCurrentContext();

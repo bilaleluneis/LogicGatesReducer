@@ -3,19 +3,33 @@
 //  LogicGatesSolver
 //
 //  Created by Bilal El Uneis on 4/21/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  updated 1/18/2015
 //
 
 #import "Quine_McCluskey.h"
 #import "TruthTableModel.h"
 
+// using empty category to simulate private properties and methods
+@interface Quine_McCluskey()
 
-@implementation Quine_McCluskey
+@end
+
+
+@implementation Quine_McCluskey{
+/*cant put private variables in an empty category, it can only hold properties and methods
+ so the only option if want to use vars is to declare them in the impl with @private
+ */
+@private NSMutableArray *tabularTable;
+@private NSMutableArray *kmap;
+    
+}
 
 -(id)init{
 	self = [super init];
-	tabularTable = nil;
-	kmap = nil;
+    if(self){
+        tabularTable = nil;
+        kmap = nil;
+    }
 	return self;
 }
 
@@ -252,22 +266,9 @@
 }
 
 -(void)finalMinimization{
-	//find primeImplicants
-	/*TruthTableModel *tt1=nil;
-	TruthTableModel *tt2=nil;
-	for (int i=0; i<[tabularTable count]; i++) {
-		for (int j=0; j<[tabularTable count]; j++) {
-			if (i!=j) {
-				tt1= [tabularTable objectAtIndex:i];
-				tt2= [tabularTable objectAtIndex:j];
-				[self markPrimeImp:tt1 :tt2];
-			}
-		}
-	}*/
-	for (int i=0; i < [tabularTable count]; i++) {
+    for (int i=0; i < [tabularTable count]; i++) {
 		[self markIfPrimeImp:i];
 	}
-	// end of find prime implicants
 }
 
 -(void)markIfPrimeImp:(int)index{
