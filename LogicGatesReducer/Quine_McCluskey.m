@@ -33,11 +33,11 @@
 	return self;
 }
 
--(void) createTabularTable:(NSMutableArray*) tt{
+-(void) createTabularTable:(NSMutableArray*) truthTable{
 	tabularTable = [[NSMutableArray alloc]initWithCapacity:1];
 	//insert elemets that has output = 1 into tabular table
-	for (int i = 0; i < [tt count]; i++) {
-		TruthTableModel *ttm = [tt objectAtIndex:i];
+	for (int i = 0; i < [truthTable count]; i++) {
+		TruthTableModel *ttm = [truthTable objectAtIndex:i];
 		if ([ttm get_output_value] == 1) {
 			[tabularTable addObject:ttm];
 		}

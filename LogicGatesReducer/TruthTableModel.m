@@ -3,7 +3,7 @@
 //  LogicGatesSolver
 //
 //  Created by Bilal El Uneis on 4/3/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  updated 1/18/2015 to adopt modern syntax.
 //
 
 #import "TruthTableModel.h"
@@ -13,15 +13,17 @@
 
 -(id) init{
 	self = [super init];
-	binary_value = nil;
-	expression= nil;
-	coveredMinTerms = nil;
-	decimal_value = 0;
-	output_value = 0;
-	num_of_inputs = 0;
-	isCombined = NO;
-	isPrimeImp = NO;
-	coveredMinTerms = [[NSMutableArray alloc]initWithCapacity:1];
+    if(self){
+        binary_value = nil;
+        expression= nil;
+        coveredMinTerms = nil;
+        decimal_value = 0;
+        output_value = 0;
+        num_of_inputs = 0;
+        isCombined = NO;
+        isPrimeImp = NO;
+        coveredMinTerms = [[NSMutableArray alloc]initWithCapacity:1];
+    }
 	return self;
 }
 

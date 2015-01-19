@@ -3,7 +3,7 @@
 //  LogicGatesSolver
 //
 //  Created by Bilal El Uneis on 4/21/10.
-//  updated 1/18/2015
+//  updated 1/18/2015 to adpot modern syntax
 //
 
 #import <Foundation/Foundation.h>
@@ -12,11 +12,10 @@
 
 @interface Quine_McCluskey : NSObject
 
--(id)init;
--(void)createTabularTable:(NSMutableArray*) tt;
+-(id)init NS_DESIGNATED_INITIALIZER;
+-(void)createTabularTable:(NSMutableArray*) truthTable;
 -(NSString*)displayTabularTable;
 -(NSString*) displayKmap;
-//-(NSString*) displayMinterms;
 -(void)reduceViaQMC;
 -(void)reduce;
 -(void)finalMinimization;
@@ -25,7 +24,7 @@
 -(NSString*)generateBooleanExpression;
 -(int)get_diff_index:(TruthTableModel*)tt1 :(TruthTableModel*)tt2;
 -(void) remove_duplicate_minterms;
-//-(void)setBitValue:(char)bit :(int)index;
 -(BOOL)minTermExists:(int)minterm :(int)index;
 -(void)markIfPrimeImp:(int)index;
+
 @end

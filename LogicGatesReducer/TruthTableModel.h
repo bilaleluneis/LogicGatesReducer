@@ -3,7 +3,7 @@
 //  LogicGatesSolver
 //
 //  Created by Bilal El Uneis on 4/3/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  updated 1/18/2015 to adopt modern syntax
 //
 
 #import <Foundation/Foundation.h>
@@ -20,7 +20,7 @@
 	BOOL isPrimeImp;
 }
 
--(id)init;
+-(id)init NS_DESIGNATED_INITIALIZER;
 -(void)insertBinaryCell:(int) decimal :(int) numOfIn;
 -(void)generate_expression:(char*) bin;
 -(int)get_output_value;
@@ -34,8 +34,6 @@
 -(NSString*)get_binary_value;
 -(void)set_expression:(NSString*)exp;
 -(NSString*)get_expression;
-//-(int)get_binary_value_length;
--(void)dealloc;
 -(NSArray*)get_covered_minterms;
 -(void)set_covered_minterms:(NSArray*)mintermArray;
 -(void)addTo_covered_minterms:(NSArray*)mterm;
