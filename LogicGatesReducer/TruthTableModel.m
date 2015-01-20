@@ -1,38 +1,47 @@
-//
-//  TruthTableModel.m
-//  LogicGatesSolver
-//
-//  Created by Bilal El Uneis on 4/3/10.
-//  updated 1/18/2015 to adopt modern syntax.
-//
-
 #import "TruthTableModel.h"
 
+/**
+ @author Bilal El Uneis (bilaleluneis@gmail.com)
+ @since 4/3/10 updated 1/19/2015
+ @abstract Interface to Model Truth Table used to describe logic gates
+ functionality.
+ */
 
-@implementation TruthTableModel
+@implementation TruthTableModel{
+    @private
+        NSMutableString *_binaryValue;
+        NSMutableString *_expression;
+        NSMutableArray *_coveredMinTerms;
+        int _numOfInputs;
+        int _decimalValue;
+        int _outputValue;
+        BOOL _combinedInd;
+        BOOL _primeImpInd;
+}
 
--(id) init{
+#pragma mark designated initalizer
+- (instancetype)init{
 	self = [super init];
     if(self){
-        binary_value = nil;
-        expression= nil;
-        coveredMinTerms = nil;
-        decimal_value = 0;
-        output_value = 0;
-        num_of_inputs = 0;
-        isCombined = NO;
-        isPrimeImp = NO;
-        coveredMinTerms = [[NSMutableArray alloc]initWithCapacity:1];
+        _binaryValue = nil;
+        _expression= nil;
+        _coveredMinTerms = nil;
+        _decimalValue = 0;
+        _outputValue = 0;
+        _numOfInputs = 0;
+        _combinedInd = NO;
+        _primeImpInd = NO;
+        _coveredMinTerms = [[NSMutableArray alloc]initWithCapacity:1];
     }
 	return self;
 }
 
 
--(void)insertBinaryCell:(int) decimal :(int) numOfIn{
+- (void)insertBinaryCell:(int) decimal :(int) numOfIn{
 	//initate decimal_value;
-	num_of_inputs = numOfIn;
-	decimal_value = decimal;
-	[coveredMinTerms addObject:[NSNumber numberWithInt:decimal_value]];
+	_numOfInputs = numOfIn;
+	_decimalValue = decimal;
+	[_coveredMinTerms addObject:[NSNumber numberWithInt:_decimalValue]];
 	
 	//rest of code from C
 	int  k = 0, n = 0;
@@ -81,161 +90,161 @@
 	//printf("\nc_binary value is %s\n",c_binary_value);
 	
 	//create NSString out of the C string
-	binary_value = [[NSString alloc] initWithCString:binary];
+	_binaryValue = [[NSMutableString alloc] initWithCString:binary encoding:NSUTF8StringEncoding];
 	//NSLog(@"%@",binary_value);
 	
 	//generate exprisson
-	[self generate_expression:binary];
+	[self generateExpression:binary];
 	//NSLog(@"%@",expression);
 }
 
 // this can be changed to use NSString instead
--(void)generate_expression:(char*)bin{
-	expression = [[NSMutableString alloc] initWithString:@""];
+- (void)generateExpression:(char*)bin{
+	_expression = [[NSMutableString alloc] initWithString:@""];
 	int i =0;
 	while (bin[i] != '\0') {
 		if (i == 0) {
 			if (bin[i] == '0')
-				[expression appendString:@"A'"];
+				[_expression appendString:@"A'"];
 			else
-				[expression appendString:@"A"];
+				[_expression appendString:@"A"];
 		}
 		else if (i == 1) {
 			if (bin[i] == '0')
-				[expression appendString:@"B'"];
+				[_expression appendString:@"B'"];
 			else
-				[expression appendString:@"B"];
+				[_expression appendString:@"B"];
 		}
 		else if (i == 2) {
 			if (bin[i] == '0')
-				[expression appendString:@"C'"];
+				[_expression appendString:@"C'"];
 			else
-				[expression appendString:@"C"];
+				[_expression appendString:@"C"];
 		}
 		else if (i == 3) {
 			if (bin[i] == '0')
-				[expression appendString:@"D'"];
+				[_expression appendString:@"D'"];
 			else
-				[expression appendString:@"D"];
+				[_expression appendString:@"D"];
 		}
 		else if (i == 4) {
 			if (bin[i] == '0')
-				[expression appendString:@"X'"];
+				[_expression appendString:@"X'"];
 			else
-				[expression appendString:@"X"];
+				[_expression appendString:@"X"];
 		}
 		else if (i == 5) {
 			if (bin[i] == '0')
-				[expression appendString:@"Y'"];
+				[_expression appendString:@"Y'"];
 			else
-				[expression appendString:@"Y"];
+				[_expression appendString:@"Y"];
 		}
 		else if (i == 6) {
 			if (bin[i] == '0')
-				[expression appendString:@"Z'"];
+				[_expression appendString:@"Z'"];
 			else
-				[expression appendString:@"Z"];
+				[_expression appendString:@"Z"];
 		}
 		
 		i++;
 	}
 }
 
--(int)get_output_value{
-	return output_value;
+- (int)get_output_value{
+	return _outputValue;
 }
--(void)set_output_value :(int)value{
-	output_value = value;
-}
-
--(void)set_num_of_inputs:(int)value{
-	num_of_inputs = value;
+- (void)set_output_value :(int)value{
+	_outputValue = value;
 }
 
--(int)get_num_of_inputs{
-	return num_of_inputs;
+- (void)set_num_of_inputs:(int)value{
+	_numOfInputs = value;
 }
 
--(int)get_decimal_value{
-	return decimal_value;
-}
--(void) set_decimal_value:(int)value{
-	decimal_value = value;
+- (int)get_num_of_inputs{
+	return _numOfInputs;
 }
 
--(void)setBitValue:(char)bit :(int)index{
+- (int)get_decimal_value{
+	return _decimalValue;
+}
+- (void) set_decimal_value:(int)value{
+	_decimalValue = value;
+}
+
+- (void)setBitValue:(char)bit :(int)index{
 	char tmp[20];
 	int i=0;
-	for (i=0; i<[binary_value length]; i++) {
-		tmp[i]=[binary_value characterAtIndex:i];
+	for (i=0; i<[_binaryValue length]; i++) {
+		tmp[i]=[_binaryValue characterAtIndex:i];
 	}
 	tmp[i]='\0';
 	tmp[index]=bit;
-    binary_value = [[NSMutableString alloc] initWithCString:tmp];
+    _binaryValue = [[NSMutableString alloc] initWithCString:tmp encoding:NSUTF8StringEncoding];
 }
 
--(void)set_binary_value:(NSString*)value{
-    binary_value = [[NSMutableString alloc]initWithString:value];
+- (void)set_binary_value:(NSString*)value{
+    _binaryValue = [[NSMutableString alloc]initWithString:value];
 }
 
--(NSString*)get_binary_value{
-	return binary_value;
+- (NSString*)get_binary_value{
+	return _binaryValue;
 }
 
--(void)set_expression:(NSString*)exp{
-    expression= [[NSMutableString alloc]initWithString:exp];
+- (void)set_expression:(NSString*)exp{
+    _expression= [[NSMutableString alloc]initWithString:exp];
 }
 
--(NSString*)get_expression{
-	return expression;
+- (NSString*)get_expression{
+	return _expression;
 }
 
--(NSArray*)get_covered_minterms{
-	return coveredMinTerms;
+- (NSArray*)get_covered_minterms{
+	return _coveredMinTerms;
 }
 
--(void)set_covered_minterms:(NSArray*)mintermArray{
-	coveredMinTerms= [[NSMutableArray alloc]initWithArray:mintermArray];
+- (void)set_covered_minterms:(NSArray*)mintermArray{
+	_coveredMinTerms= [[NSMutableArray alloc]initWithArray:mintermArray];
 	
 }
 
--(void)addTo_covered_minterms:(NSArray*)mterm{
+- (void)addTo_covered_minterms:(NSArray*)mterm{
 	for (int i=0; i < [mterm count]; i++) {
-		for (int j=0; j<[coveredMinTerms count]; j++) {
-			if([[mterm objectAtIndex:i]intValue] == [[coveredMinTerms objectAtIndex:j]intValue])
+		for (int j=0; j<[_coveredMinTerms count]; j++) {
+			if([[mterm objectAtIndex:i]intValue] == [[_coveredMinTerms objectAtIndex:j]intValue])
 				continue;
 			else
 			{
 				int integer = [[mterm objectAtIndex:i]intValue];
 				NSNumber *num = [[NSNumber alloc]initWithInt:integer];
-				[coveredMinTerms addObject:num];
+				[_coveredMinTerms addObject:num];
 			}
 		}
 	}
 }
 
--(void)remove_minterm_duplicate{
+- (void)remove_minterm_duplicate{
 	int i =0;
 	int j =0;
-	for (i=0; i < [coveredMinTerms count]; i++) {
-		for (j=(i+1); j<[coveredMinTerms count]; j++) {
-			if ([[coveredMinTerms objectAtIndex:i] intValue] == [[coveredMinTerms objectAtIndex:j] intValue]) {
-				[coveredMinTerms removeObjectAtIndex:j];
+	for (i=0; i < [_coveredMinTerms count]; i++) {
+		for (j=(i+1); j<[_coveredMinTerms count]; j++) {
+			if ([[_coveredMinTerms objectAtIndex:i] intValue] == [[_coveredMinTerms objectAtIndex:j] intValue]) {
+				[_coveredMinTerms removeObjectAtIndex:j];
 			}
 		}
 	}
-	int index = [coveredMinTerms count];
+	int index = (int)[_coveredMinTerms count];
 	index = index -1;
-	if ([[coveredMinTerms objectAtIndex:index]intValue] == [[coveredMinTerms objectAtIndex:index-1]intValue]) {
-		[coveredMinTerms removeObjectAtIndex:index];
+	if ([[_coveredMinTerms objectAtIndex:index]intValue] == [[_coveredMinTerms objectAtIndex:index-1]intValue]) {
+		[_coveredMinTerms removeObjectAtIndex:index];
 	}
 	
 }
 
--(BOOL)get_isCombined{ return isCombined;}
--(void)set_isCombined:(BOOL)comb { isCombined = comb;}
+- (BOOL)get_isCombined{ return _combinedInd;}
+- (void)set_isCombined:(BOOL)comb { _combinedInd = comb;}
 
--(void)setPrimeImp:(BOOL)isPrime{isPrimeImp = isPrime;}
--(BOOL)isPrimeImp{return isPrimeImp;}
+- (void)setPrimeImpInd:(BOOL)isPrime{_primeImpInd = isPrime;}
+- (BOOL)isPrimeImpInd{return _primeImpInd;}
 
 @end

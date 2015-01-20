@@ -1,11 +1,3 @@
-//
-//  Quine–McCluskey.m
-//  LogicGatesSolver
-//
-//  Created by Bilal El Uneis on 4/21/10.
-//  updated 1/18/2015
-//
-
 #import "Quine_McCluskey.h"
 #import "TruthTableModel.h"
 
@@ -14,41 +6,49 @@
 
 @end
 
+/**
+ @author Bilal El Uneis (bilaleluneis@gmail.com)
+ @since 4/21/10 updated 1/19/2015
+ @abstract Interface that makes available Quine - McCluskey
+ algorithem for Logic Gates Truth Table reduction.
+ */
 
 @implementation Quine_McCluskey{
 /*cant put private variables in an empty category, it can only hold properties and methods
  so the only option if want to use vars is to declare them in the impl with @private
  */
-@private NSMutableArray *tabularTable;
-@private NSMutableArray *kmap;
+@private
+    NSMutableArray *_tabularTable;
+    NSMutableArray *_kmap;
     
 }
 
--(id)init{
+#pragma mark designated Initalizer
+- (instancetype)init{
 	self = [super init];
     if(self){
-        tabularTable = nil;
-        kmap = nil;
+        _tabularTable = nil;
+        _kmap = nil;
     }
 	return self;
 }
 
--(void) createTabularTable:(NSMutableArray*) truthTable{
-	tabularTable = [[NSMutableArray alloc]initWithCapacity:1];
+- (void) createTabularTable:(NSMutableArray*) truthTable{
+	_tabularTable = [[NSMutableArray alloc]initWithCapacity:1];
 	//insert elemets that has output = 1 into tabular table
 	for (int i = 0; i < [truthTable count]; i++) {
 		TruthTableModel *ttm = [truthTable objectAtIndex:i];
 		if ([ttm get_output_value] == 1) {
-			[tabularTable addObject:ttm];
+			[_tabularTable addObject:ttm];
 		}
 	}
 }
 
--(NSString*) displayTabularTable{
+- (NSString*) displayTabularTable{
 	NSMutableString *s = nil;
 	s = [[NSMutableString alloc]initWithString:@"\nQuine-McCluseky\n"];
-	for (int i =0 ; i < [tabularTable count]; i++) {
-		TruthTableModel *ttm = [tabularTable objectAtIndex:i];
+	for (int i =0 ; i < [_tabularTable count]; i++) {
+		TruthTableModel *ttm = [_tabularTable objectAtIndex:i];
 		int dec_v =  [ttm get_decimal_value];
 		int output_v = [ttm get_output_value];
 		NSString *binary_v = [ttm get_binary_value];
@@ -66,11 +66,11 @@
 	return s;
 }
 
--(NSString*) displayKmap{
+- (NSString*) displayKmap{
 	NSMutableString *s = nil;
 	s = [[NSMutableString alloc]initWithString:@"\nKmap\n"];
-	for (int i =0 ; i < [tabularTable count]; i++) {
-		TruthTableModel *ttm = [tabularTable objectAtIndex:i];
+	for (int i =0 ; i < [_tabularTable count]; i++) {
+		TruthTableModel *ttm = [_tabularTable objectAtIndex:i];
 		//int dec_v =  [ttm get_decimal_value];
 		//int output_v = [ttm get_output_value];
 		NSString *binary_v = [ttm get_binary_value];
@@ -90,7 +90,7 @@
 		//[s appendString:[decimal_value stringValue]];
 		[s appendString:@")\t"];
 		[s appendString:binary_v];
-		if ([ttm isPrimeImp]==YES) {
+		if ([ttm isPrimeImpInd]==YES) {
 			[s appendString:@"\t*"];
 		}
 		[s appendString:@"\n"];
@@ -101,28 +101,28 @@
 	return s;
 }
 
--(void)reduce{
-	kmap = [[NSMutableArray alloc] initWithCapacity:1];
-	for (int i=0; i< [tabularTable count]; i++) {
-		for (int j=1; j<[tabularTable count]; j++) {
-			if ([self differInOneBitOnly:[tabularTable objectAtIndex:i] :[tabularTable objectAtIndex:j]]) {
-				TruthTableModel *tmp = [tabularTable objectAtIndex:i];
+- (void)reduce{
+	_kmap = [[NSMutableArray alloc] initWithCapacity:1];
+	for (int i=0; i< [_tabularTable count]; i++) {
+		for (int j=1; j<[_tabularTable count]; j++) {
+			if ([self differInOneBitOnly:[_tabularTable objectAtIndex:i] :[_tabularTable objectAtIndex:j]]) {
+				TruthTableModel *tmp = [_tabularTable objectAtIndex:i];
 				TruthTableModel *tt = [[TruthTableModel alloc] init];
 				[tt set_decimal_value:[tmp get_decimal_value]];
 				[tt set_num_of_inputs:[tmp get_num_of_inputs]];
 				[tt set_binary_value:[tmp get_binary_value]];
 				[tt set_expression:[tmp get_expression]];
 				[tt set_covered_minterms:[tmp get_covered_minterms]];
-				[tt addTo_covered_minterms:[[tabularTable objectAtIndex:j]get_covered_minterms]];
+				[tt addTo_covered_minterms:[[_tabularTable objectAtIndex:j]get_covered_minterms]];
 				[tt remove_minterm_duplicate]; // remove duplicates
 				[tt set_output_value:[tmp get_output_value]];
-				int index = [self get_diff_index:[tabularTable objectAtIndex:i] :[tabularTable objectAtIndex:j]];
+				int index = [self get_diff_index:[_tabularTable objectAtIndex:i] :[_tabularTable objectAtIndex:j]];
 				[tt setBitValue:'-' :index]; 
-				[kmap addObject:tt];
-				[tabularTable removeObjectAtIndex:j];
+				[_kmap addObject:tt];
+				[_tabularTable removeObjectAtIndex:j];
 				NSLog(@"KMAP  %@",[self displayKmap]);
 			}
-			[tabularTable removeObjectAtIndex:i];
+			[_tabularTable removeObjectAtIndex:i];
 			NSLog(@"TABULAR  %@",[self displayTabularTable]);
 			
 		}
@@ -130,16 +130,16 @@
 }
 
 
--(void)reduceViaQMC{
-	kmap = [[NSMutableArray alloc]initWithCapacity:1];
+- (void)reduceViaQMC{
+	_kmap = [[NSMutableArray alloc]initWithCapacity:1];
 	//NSMutableArray *tmpKmap = nil;
 	BOOL bitChangeAccured = NO;
 	
 	int do_loop_counter = 0;
-	if ([tabularTable count] == 0) {
+	if ([_tabularTable count] == 0) {
 		return;
 	}
-	int do_loop_sen = [[tabularTable objectAtIndex:0]get_num_of_inputs];
+	int do_loop_sen = [[_tabularTable objectAtIndex:0]get_num_of_inputs];
 	
 	do{
 		
@@ -153,32 +153,32 @@
 		
 		
 	
-	for (int i =0; i<[tabularTable count]; i++) {
-		for (int j=(i+1); j<[tabularTable count]; j++) {
-			if ([self differInOneBitOnly:[tabularTable objectAtIndex:i] :[tabularTable objectAtIndex:j]]) {
+	for (int i =0; i<[_tabularTable count]; i++) {
+		for (int j=(i+1); j<[_tabularTable count]; j++) {
+			if ([self differInOneBitOnly:[_tabularTable objectAtIndex:i] :[_tabularTable objectAtIndex:j]]) {
 				bitChangeAccured = YES;
-				TruthTableModel *tmp = [tabularTable objectAtIndex:i];
-				TruthTableModel *tmp2= [tabularTable objectAtIndex:j];
+				TruthTableModel *tmp = [_tabularTable objectAtIndex:i];
+				TruthTableModel *tmp2= [_tabularTable objectAtIndex:j];
 				[tmp2 set_isCombined:YES];
 				TruthTableModel *tt = [[TruthTableModel alloc] init];
 				[tt set_binary_value:[tmp get_binary_value]];
 				[tt set_expression:[tmp get_expression]];
 				[tt set_covered_minterms:[tmp get_covered_minterms]];
-				[tt addTo_covered_minterms:[[tabularTable objectAtIndex:j]get_covered_minterms]];
+				[tt addTo_covered_minterms:[[_tabularTable objectAtIndex:j]get_covered_minterms]];
 				[tt remove_minterm_duplicate]; // remove duplicates
 				[tt set_output_value:[tmp get_output_value]];
 				[tt set_num_of_inputs:[tmp get_num_of_inputs]];
 				[tt set_decimal_value:[tmp get_decimal_value]];
-				int index = [self get_diff_index:[tabularTable objectAtIndex:i] :[tabularTable objectAtIndex:j]];
+				int index = [self get_diff_index:[_tabularTable objectAtIndex:i] :[_tabularTable objectAtIndex:j]];
 				if (index != -1) {
 					[tt setBitValue:'-' :index]; 
 				}
-				[kmap addObject:tt];
+				[_kmap addObject:tt];
 				NSLog(@"%@",[self displayKmap]);
 			}
 		}
-		TruthTableModel *tmp = [tabularTable objectAtIndex:i];
-		if (bitChangeAccured == NO && i != ([tabularTable count]) && [tmp get_isCombined] == NO) {
+		TruthTableModel *tmp = [_tabularTable objectAtIndex:i];
+		if (bitChangeAccured == NO && i != ([_tabularTable count]) && [tmp get_isCombined] == NO) {
 			TruthTableModel *tt = [[TruthTableModel alloc] init];
 			[tt set_binary_value:[tmp get_binary_value]];
 			[tt set_expression:[tmp get_expression]];
@@ -186,15 +186,15 @@
 			[tt set_output_value:[tmp get_output_value]];
 			[tt set_num_of_inputs:[tmp get_num_of_inputs]];
 			[tt set_decimal_value:[tmp get_decimal_value]];
-			[kmap addObject:tt];
+			[_kmap addObject:tt];
 			NSLog(@"%@",[self displayKmap]);
 		}
 		bitChangeAccured = NO;
 		[tmp set_isCombined:NO];
 	}
 		
-		tabularTable = [[NSMutableArray alloc] initWithArray:kmap];
-		kmap = [[NSMutableArray alloc]initWithCapacity:1];
+		_tabularTable = [[NSMutableArray alloc] initWithArray:_kmap];
+		_kmap = [[NSMutableArray alloc]initWithCapacity:1];
 		
 	}while(do_loop_counter < do_loop_sen);
 	
@@ -203,20 +203,20 @@
 	
 }
 
--(void) remove_duplicate_minterms{
-	for (int i=0; i< [tabularTable count]; i++) {
-		for (int j=i+1; j<[tabularTable count]; j++) {
-			TruthTableModel *tmp = [tabularTable objectAtIndex:i];
-			TruthTableModel *tmp2= [tabularTable objectAtIndex:j];
+- (void) remove_duplicate_minterms{
+	for (int i=0; i< [_tabularTable count]; i++) {
+		for (int j=i+1; j<[_tabularTable count]; j++) {
+			TruthTableModel *tmp = [_tabularTable objectAtIndex:i];
+			TruthTableModel *tmp2= [_tabularTable objectAtIndex:j];
 			if ([[tmp get_binary_value] isEqualToString:[tmp2 get_binary_value]]) {
-				[tabularTable removeObjectAtIndex:j];
+				[_tabularTable removeObjectAtIndex:j];
 			}
 		}
 	}
 }
 
 
--(BOOL) differInOneBitOnly :(TruthTableModel*)tt1 :(TruthTableModel*)tt2{
+- (BOOL) differInOneBitOnly :(TruthTableModel*)tt1 :(TruthTableModel*)tt2{
 	int diff_num = 0;
 	BOOL invalid_dash=NO;
 	int length = [tt1 get_num_of_inputs];
@@ -238,7 +238,7 @@
 		return NO;
 }
 
--(int)get_diff_index:(TruthTableModel*)tt1 :(TruthTableModel*)tt2{
+- (int)get_diff_index:(TruthTableModel*)tt1 :(TruthTableModel*)tt2{
 	int length = [tt1 get_num_of_inputs];
 	BOOL invalid_dash=NO;
 	int index = -1;
@@ -261,18 +261,18 @@
 }
 
 
--(NSString*)generateBooleanExpression{
+- (NSString*)generateBooleanExpression{
 	return nil;
 }
 
--(void)finalMinimization{
-    for (int i=0; i < [tabularTable count]; i++) {
+- (void)finalMinimization{
+    for (int i=0; i < [_tabularTable count]; i++) {
 		[self markIfPrimeImp:i];
 	}
 }
 
--(void)markIfPrimeImp:(int)index{
-	TruthTableModel *tt1=[tabularTable objectAtIndex:index];
+- (void)markIfPrimeImp:(int)index{
+	TruthTableModel *tt1=[_tabularTable objectAtIndex:index];
 	//TruthTableModel *tt2=nil;
 	//BOOL mintermexist = YES;
 	for (int i=0; i<[[tt1 get_covered_minterms]count]; i++) {
@@ -281,21 +281,21 @@
 			//[tabularTable 
 			//mintermexist = ;
 			if ([self minTermExists:[[[tt1 get_covered_minterms] objectAtIndex:i] intValue] :index] == YES) {
-				[tt1 setPrimeImp:NO];
+				[tt1 setPrimeImpInd:NO];
 				return;
 			}
 			
 		//}
 	}
-	[tt1 setPrimeImp:YES];
+	[tt1 setPrimeImpInd:YES];
 	
 }
 
--(BOOL)minTermExists:(int)minterm :(int)index{
+- (BOOL)minTermExists:(int)minterm :(int)index{
 	TruthTableModel *tt = nil;
-	for (int i=0; i<[tabularTable count]; i++) {
+	for (int i=0; i<[_tabularTable count]; i++) {
 		if (i != index) {
-			tt = [tabularTable objectAtIndex:i];
+			tt = [_tabularTable objectAtIndex:i];
 			for (int j=0; j<[[tt get_covered_minterms]count]; j++) {
 				if ([[[tt get_covered_minterms]objectAtIndex:j] intValue] == minterm) {
 					return YES;
@@ -306,7 +306,7 @@
 	return NO;
 }
 
--(void) markPrimeImp:(TruthTableModel*)tt1 :(TruthTableModel*)tt2{
+- (void) markPrimeImp:(TruthTableModel*)tt1 :(TruthTableModel*)tt2{
 	BOOL is_prime = YES; // be default assume it is prime
 	int tt1_min_at =0;
 	int tt2_min_at =0;
@@ -320,11 +320,11 @@
 		}
 	}
 	if (is_prime == YES){
-		[tt1 setPrimeImp:YES];
+		[tt1 setPrimeImpInd:YES];
 		//[tt2 setPrimeImp:YES];
 	}
 	else{
-		[tt1 setPrimeImp:NO];
+		[tt1 setPrimeImpInd:NO];
 		//[tt2 setPrimeImp:NO];
 	}
 }
