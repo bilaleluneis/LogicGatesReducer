@@ -1,4 +1,4 @@
-@import Foundation;
+@class Foundation;
 
 /**
  @author Bilal El Uneis (bilaleluneis@gmail.com)

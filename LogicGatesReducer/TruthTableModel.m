@@ -1,3 +1,4 @@
+@import Foundation;
 #import "TruthTableModel.h"
 
 /**
@@ -6,6 +7,16 @@
  @abstract Interface to Model Truth Table used to describe logic gates
  functionality.
  */
+
+#pragma mark -
+#pragma mark empty category / extension to add any private methods and properties
+
+@interface TruthTableModel()
+
+@end
+
+#pragma mark -
+#pragma mark Start of Interface Implementation
 
 @implementation TruthTableModel{
     @private
@@ -19,7 +30,9 @@
         BOOL _primeImpInd;
 }
 
+#pragma mark -
 #pragma mark designated initalizer
+
 - (instancetype)init{
 	self = [super init];
     if(self){
@@ -35,7 +48,6 @@
     }
 	return self;
 }
-
 
 - (void)insertBinaryCell:(int) decimal :(int) numOfIn{
 	//initate decimal_value;
@@ -150,6 +162,9 @@
 	}
 }
 
+#pragma mark -
+#pragma mark getters and setters
+
 - (int)get_output_value{
 	return _outputValue;
 }
@@ -247,4 +262,6 @@
 - (void)setPrimeImpInd:(BOOL)isPrime{_primeImpInd = isPrime;}
 - (BOOL)isPrimeImpInd{return _primeImpInd;}
 
+#pragma mark -
+#pragma mark End of Interface Implementation
 @end
